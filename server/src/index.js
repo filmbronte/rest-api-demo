@@ -1,10 +1,15 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const routes = require('./routes');
 const cors = require('cors');
 
 const app = express();
 
 const PORT = 3030;
+
+mongoose.connect('mongodb://localhost:27017/furnitures')
+	.then(() => console.log('DB connected successfully!'))
+	.catch(err => console.log('DB error', err.message))
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json()); //application/json -> AJAX requests
